@@ -1,0 +1,41 @@
+-- 1. ABILITAZIONE VINCOLI CHIAVI ESTERNE (Fondamentale se usi SQLite in Python)
+PRAGMA foreign_keys = ON;
+
+-- 2. TABELLA CATEGORIE
+CREATE TABLE Categorie (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_categoria TEXT NOT NULL UNIQUE CHECK(length(trim(nome_categoria)) > 0)
+);
+
+-- 3. TABELLA SPESE
+CREATE TABLE Spese (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    data TEXT NOT NULL CHECK(data LIKE '____-__-__'), -- Forza il formato YYYY-MM-DD
+    importo REAL NOT NULL CHECK(importo > 0),
+    descrizione TEXT,
+    id_categoria INTEGER NOT NULL,
+    FOREIGN KEY (id_categoria) REFERENCES Categorie(id) ON DELETE RESTRICT
+);
+
+-- 4. TABELLA BUDGET
+CREATE TABLE Budget (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    mese TEXT NOT NULL CHECK(mese LIKE '____-__'), -- Forza il formato YYYY-MM
+    importo_budget REAL NOT NULL CHECK(importo_budget > 0),
+    id_categoria INTEGER NOT NULL,
+    FOREIGN KEY (id_categoria) REFERENCES Categorie(id) ON DELETE RESTRICT,
+    UNIQUE(mese, id_categoria) -- Impedisce doppie pianificazioni per la stessa categoria nello stesso mese
+);
+
+-- 5. INSERIMENTO DATI DI ESEMPIO (Richiesto dalle specifiche)
+INSERT INTO Categorie (nome_categoria) VALUES ('Alimentari');
+INSERT INTO Categorie (nome_categoria) VALUES ('Trasporti');
+INSERT INTO Categorie (nome_categoria) VALUES ('Intrattenimento');
+
+INSERT INTO Spese (data, importo, descrizione, id_categoria) VALUES ('2026-11-01', 25.50, 'Spesa supermercato', 1);
+INSERT INTO Spese (data, importo, descrizione, id_categoria) VALUES ('2026-11-02', 15.00, 'Ricarica abbonamento bus', 2);
+
+INSERT INTO Budget (mese, importo_budget, id_categoria) VALUES ('2026-11', 200.00, 1);
+INSERT INTO Budget (mese, importo_budget, id_categoria) VALUES ('2026-11', 50.00, 2);
+
+
