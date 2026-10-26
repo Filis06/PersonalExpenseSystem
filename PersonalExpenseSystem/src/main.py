@@ -162,6 +162,8 @@ def visualizza_report():
                 print(f"\nMese: {row[0]}\nCategoria: {row[1]}\nBudget: {row[2]:.2f}\nSpeso: {row[3]:.2f}")
                 if row[3] > row[2]:
                     print("Stato: SUPERAMENTO BUDGET")
+                else:
+                    print("Stato: NEI LIMITI")
         elif scelta == "3":
             cursor.execute("""
                 SELECT S.data, C.nome_categoria, S.importo, IFNULL(S.descrizione, '') 
