@@ -49,6 +49,7 @@ def inizializza_database():
         
         cursor.execute("INSERT INTO SPESE (data, importo, descrizione, FK_id_categoria) VALUES ('2026-11-01', 25.50, 'Spesa supermercato', 1);")
         cursor.execute("INSERT INTO SPESE (data, importo, descrizione, FK_id_categoria) VALUES ('2026-11-02', 15.00, 'Ricarica abbonamento bus', 2);")
+        cursor.execute("INSERT INTO SPESE (data, importo, descrizione, FK_id_categoria) VALUES ('2026-11-15', 40.00, 'Rifornimento carburante auto', 2);")
         
         cursor.execute("INSERT INTO BUDGET (mese, importo_budget, FK_id_categoria) VALUES ('2026-11', 200.00, 1);")
         cursor.execute("INSERT INTO BUDGET (mese, importo_budget, FK_id_categoria) VALUES ('2026-11', 50.00, 2);")
