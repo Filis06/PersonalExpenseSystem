@@ -43,6 +43,7 @@ INSERT INTO CATEGORIE (nome_categoria) VALUES ('Intrattenimento');
 
 INSERT INTO SPESE (data, importo, descrizione, FK_id_categoria) VALUES ('2026-11-01', 25.50, 'Spesa supermercato', 1);
 INSERT INTO SPESE (data, importo, descrizione, FK_id_categoria) VALUES ('2026-11-02', 15.00, 'Ricarica abbonamento bus', 2);
+INSERT INTO SPESE (data, importo, descrizione, FK_id_categoria) VALUES ('2026-11-15', 40.00, 'Rifornimento carburante auto', 2);
 
 INSERT INTO BUDGET (mese, importo_budget, FK_id_categoria) VALUES ('2026-11', 200.00, 1);
 INSERT INTO BUDGET (mese, importo_budget, FK_id_categoria) VALUES ('2026-11', 50.00, 2);
